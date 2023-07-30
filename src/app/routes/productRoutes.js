@@ -11,16 +11,21 @@ router.get('/:categoryId/products', async (req, res) => {
     if (!category) {
       return res.status(404).json({ message: 'Category not found' });
     }
-    res.json(category.products);
+    // total products in a category
+    const totalProducts = category.products.length;
+    res.json({ totalProducts, products: category.products });
   } catch (error) {
     res.status(500).json({ message: 'Internal Server Error' });
   }
+
+
 });
 
 // Add a product to a category
 router.post('/:categoryId/products', async (req, res) => {
   const categoryId = req.params.categoryId;
   const { name, quantity, price } = req.body;
+
   try {
     const category = await Category.findById(categoryId);
     console.log(categoryId)
@@ -31,9 +36,13 @@ router.post('/:categoryId/products', async (req, res) => {
     category.products.push(product);
     await category.save();
     res.json(product);
+
+
+
   } catch (error) {
     res.status(400).json({ message: 'Bad Request' });
   }
+
 });
 
 module.exports = router;
