@@ -1,32 +1,4 @@
 
-// const mongoose = require('mongoose')
-// const app = require('./app')
-// const port = 5000
-
-
-// // Connect to MongoDB
-
-// async function connectToDB() {
-//   try {
-//     await mongoose.connect("mongodb://127.0.0.1:27017/productDB");
-//     console.log("✅ Database Connected Successfully🧑🏻‍💻");
-
-//     app.listen(port, () => {
-//       console.log(`✅ Server is running on port ${port} 🚀`);
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
-// connectToDB();
-
-
-
-// -------------------------------------
-
-// index.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -48,10 +20,10 @@ mongoose
   .then(() => {
     // Start the server
     app.listen(port, () => {
-      console.log(`Server is running on http://localhost:${port}`);
+      console.log(`✅ Server is running on port ${port} 🚀`);
     });
 
-    console.log('Connected to MongoDB');
+    console.log("✅ Database Connected Successfully🧑🏻‍💻");
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
